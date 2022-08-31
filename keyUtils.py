@@ -27,7 +27,7 @@ def wifToPrivateKey(s):
 def derSigToHexSig(s):
     s, junk = ecdsa.der.remove_sequence(s.decode('hex'))
     if junk != '':
-        print('JUNK', junk.encode('hex'))
+        print(('JUNK', junk.encode('hex')))
     assert(junk == '')
     x, s = ecdsa.der.remove_integer(s)
     y, s = ecdsa.der.remove_integer(s)
@@ -121,8 +121,10 @@ class TestKey(unittest.TestCase):
         sig_der =       "304402202c2e1a746c556546f2c959e92f2d0bd2678274823cc55e11628284e4a13016f80220797e716835f9dbcddb752cd0115a970a022ea6f2d8edafff6e087f928e41baac01"[:-2]
         sig = derSigToHexSig(sig_der)
         vk = ecdsa.VerifyingKey.from_string(public_key[2:].decode('hex'), curve=ecdsa.SECP256k1)
-        self.assertEquals(vk.verify_digest(sig.decode('hex'), hashToSign.decode('hex')), True)
+        self.assertEqual(vk.verify_digest(sig.decode('hex'), hashToSign.decode('hex')), True)
         #OP_DUP OP_HASH160 167c74f7491fe552ce9e1912810a984355b8ee07 OP_EQUALVERIFY OP_CHECKSIG
 
 if __name__ == '__main__':
     unittest.main()
+
+
