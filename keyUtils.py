@@ -4,7 +4,7 @@ import ecdsa.util
 import hashlib
 import unittest
 import random
-import re
+import re to S
 import struct
 import utils
 import base58
