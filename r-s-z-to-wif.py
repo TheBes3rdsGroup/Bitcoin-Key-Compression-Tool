@@ -67,7 +67,7 @@ def base58_check_encode(s, version=0):
     return base58_encode_padded(vs + check)
 
 def get_der_field(i,binary):
-        if (ord(binary[i]) == 02):
+        if (ord(binary[i]) == 0o2):
                 length = binary[i+1]
                 end = i + ord(length) + 2
                 string = binary[i+2:end]
@@ -87,21 +87,21 @@ def der_decode(hexstring):
                 return None
 
 def show_results(privkeys):
-		print "Posible Candidates..."
+		print("Posible Candidates...")
 		for privkey in privkeys:
         		hexprivkey = inttohexstr(privkey)
-			print "intPrivkey = %d"  % privkey
-			print "hexPrivkey = %s" % hexprivkey
-			print "bitcoin Privkey (WIF) = %s" % base58_check_encode(hexprivkey.decode('hex'),version=128)
-			print "bitcoin Privkey (WIF compressed) = %s" % base58_check_encode((hexprivkey + "01").decode('hex'),version=128)
+			print("intPrivkey = %d"  % privkey)
+			print("hexPrivkey = %s" % hexprivkey)
+			print("bitcoin Privkey (WIF) = %s" % base58_check_encode(hexprivkey.decode('hex'),version=128))
+			print("bitcoin Privkey (WIF compressed) = %s" % base58_check_encode((hexprivkey + "01").decode('hex'),version=128))
 
 
 def show_params(params):
 	for param in params:
 		try:
-			print "%s: %s" % (param,inttohexstr(params[param]))
+			print("%s: %s" % (param,inttohexstr(params[param])))
 		except:
-			print "%s: %s" % (param,params[param])
+			print("%s: %s" % (param,params[param]))
 
 def inverse_mult(a,b,p):
 	y =  (a * pow(b,p-2,p))  #(pow(a, b) modulo p) where p should be a prime number
@@ -158,3 +158,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
