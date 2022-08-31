@@ -34,7 +34,7 @@ def derSigToHexSig(s):
     return ('%064x%064x' % (x, y))
 
 
-# Input is hex string
+# Input is Hex string
 
 def privateKeyToPublicKey(s):
     sk = ecdsa.SigningKey.from_string(s.decode('hex'), curve=ecdsa.SECP256k1)
